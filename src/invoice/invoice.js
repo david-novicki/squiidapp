@@ -34,14 +34,15 @@ class Invoice extends Component {
         console.log('info');
     }
     renderContributions(contributions) {
-        return contributions.map(item => {
-            return (
-                <FeedItem data={item}/>
-            )
-        })
+        if (contributions)
+            return contributions.map(item => {
+                return (
+                    <FeedItem data={item} />
+                )
+            })
     }
     render() {
-        let invoice = this.state.data.invoice;
+        let invoice = (this.state.data ? this.state.data.invoice : {});
         return (
             <View style={styles.container}>
                 <View style={styles.body}>
