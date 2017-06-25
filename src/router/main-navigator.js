@@ -9,9 +9,9 @@ import Pay from '../pay/pay';
 import QRReader from '../qr-reader/qr-reader';
 
 const StackNav = StackNavigator({
-    Home: {
-        screen: Home,
-    },
+    // Home: {
+    //     screen: Home,
+    // },
     Invoice: {
         screen: Invoice
     },

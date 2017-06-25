@@ -7,8 +7,6 @@ class QRReader extends Component {
         this.onRead = this.onRead.bind(this);
     }
     onRead(e) {
-        console.log('read');
-        let token = 'test';
         this.props.navigation.navigate('Invoice', {
             token: e.data
         });
