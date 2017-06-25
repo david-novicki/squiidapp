@@ -11,7 +11,8 @@ class Pay extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            amount: '0'
+            amount: '0',
+            invoiceID: props.navigation.params.invoiceID
         }
         this.onAdd = this.onAdd.bind(this);
         this.onCompletePress = this.onCompletePress.bind(this);
@@ -31,8 +32,9 @@ class Pay extends Component {
     onCompletePress() {
         console.log('complete');
         this.props.navigation.navigate('Complete', {
-            amount: this.state.amount
-        })
+            amount: this.state.amount,
+            invoiceID: this.state.invoiceID
+        });
     }
     render() {
         return (

@@ -9,12 +9,22 @@ import {
 import Hr from 'react-native-hr';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Iconn from 'react-native-vector-icons/MaterialIcons';
+import API from './api/payments';
 
 class Complete extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            amount: props.navigation.state.params.amount
+            amount: props.navigation.state.params.amount,
+            invoiceID: props.navigation.state.params.invoiceID
+        }
+        this.onCompletePress = this.onCompletePress.bind(this);
+    }
+    async onCompletePress() {
+        try {
+            await API.makePayment(this.state)
+        } catch (error) {
+            console.log('error');
         }
     }
     render() {
@@ -25,7 +35,7 @@ class Complete extends Component {
                         <Text style={styles.amount}>${this.state.amount}</Text>
                     </View>
                     <View style={styles.cc}>
-                        <Image source={require('../public/images/visa.png')}/>
+                        <Image source={require('../public/images/visa.png')} />
                         <Text>  David's Visa </Text>
                         <Iconn name='keyboard-arrow-down' color='gray' size={25} />
                     </View>
@@ -40,7 +50,7 @@ class Complete extends Component {
                     <TouchableOpacity
                         style={styles.button}
                         onPress={this.onCompletePress}>
-                        <Text style={styles.textB}>Pay</Text>
+                        <Text style={styles.textB}>Complete</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -54,9 +64,9 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     payButton: {
-        fontFamily: 'Arial', 
-        fontSize: 15, 
-        color: 'white', 
+        fontFamily: 'Arial',
+        fontSize: 15,
+        color: 'white',
         paddingLeft: 40,
         paddingRight: 40,
         paddingTop: 5,
@@ -64,7 +74,7 @@ const styles = StyleSheet.create({
     },
     cc: {
         flexDirection: 'row',
-        alignItems:'center',
+        alignItems: 'center',
         paddingTop: 40,
         paddingBottom: 40
     },

@@ -29,7 +29,7 @@ class Invoice extends Component {
         this.socket = SocketIOClient(config._API);
         userService.getToken()
             .then(token => {
-                this.socket.emit('join', { userToken: token, invoiceID: this.state.token })
+                this.socket.emit('join', { userToken: token, invoiceID: navState.params.token })
             });
         this.socket.on('connected', this.onConnected)
         this.socket.on('contribution', this.onReceivedContribution);
@@ -54,7 +54,9 @@ class Invoice extends Component {
     }
     onPayPress() {
         console.log('pay');
-        this.props.navigation.navigate('Pay');
+        this.props.navigation.navigate('Pay', {
+            invoiceID: this.state.data.invoice._id
+        });
     }
     onInfoPress() {
         console.log('info');
