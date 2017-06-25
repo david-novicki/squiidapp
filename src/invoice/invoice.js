@@ -68,11 +68,18 @@ class Invoice extends Component {
         console.log('info');
     }
     calculateLeft(amount, contributions) {
-        let amountLeft = 0;
+        let amountPaid = 0;
         contributions.forEach(item => {
-            amountLeft = + item.amount;
+            amountPaid = + item.amount;
         })
-        return amountLeft
+        return amount - amountPaid;
+    }
+    amountPaid(contributions) {
+        let amountPaid = 0;
+        contributions.forEach(item => {
+            amountPaid = + item.amount;
+        })
+        return amountPaid;
     }
     renderbody(data) {
         return (
@@ -82,23 +89,31 @@ class Invoice extends Component {
                     <Text style={styles.text}>$</Text>
                     <Text style={styles.text}>{data.invoice.total}</Text>
                 </View>
-                <View style={[styles.row, styles.padding]}>
-                    <Text style={styles.text}>$</Text>
-                    <Text style={styles.text}>{this.calculateLeft(data.invoice.total, data.contributions)}</Text>
+                <View style={[styles.row]}>
+                    <Text style={styles.text2}>Total Paid: $</Text>
+                    <Text style={styles.text2}>{this.amountPaid(data.contributions)}</Text>
+                </View>
+                <View style={[styles.row]}>
+                    <Text style={styles.text2}>Total Left: $</Text>
+                    <Text style={styles.text2}>{this.calculateLeft(data.invoice.total, data.contributions)}</Text>
                 </View>
                 {this.renderContributions(data.contributions)}
             </View>
         )
     }
     renderContributions(contributions) {
-        if (contributions)
+        if (contributions) {
+            let invert = true;
             return contributions.map(item => {
+                invert = !invert;
                 return (
                     <FeedItem
                         key={Math.random() + 'contrib_'}
-                        data={item} />
+                        data={item}
+                        invert={invert} />
                 )
             })
+        }
     }
     render() {
         let data = this.state.data;
@@ -153,6 +168,12 @@ const styles = StyleSheet.create({
         fontSize: 90,
         color: 'white',
         paddingBottom: 10
+    },
+    text2: {
+        textAlign: 'center',
+        fontSize: 20,
+        color: 'white',
+        paddingBottom: 5
     },
     button: {
         backgroundColor: 'white',
