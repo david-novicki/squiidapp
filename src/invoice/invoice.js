@@ -10,13 +10,18 @@ import config from '../config';
 import SocketIOClient from 'socket.io-client';
 import FeedItem from './components/feed-item/feed-item';
 import userService from '../services/user';
+import BackButton from '../shared/back-button/back-button';
 
 class Invoice extends Component {
+    static navigationOptions = ({ navigation }) => ({
+        headerStyle: { position: 'absolute', backgroundColor: 'transparent', zIndex: 100, top: 0, left: 0, right: 0 },
+        headerLeft: (<BackButton onPress={() => navigation.goBack()} />),
+    })
     constructor(props) {
         super(props);
         let navState = props.navigation.state;
         this.state = {
-            token: navState.params.token || null,//594ee5de15a7233aec88a17c
+            invoiceID: '594ee5de15a7233aec88a17c',
             data: {},
         }
         this.onConnected = this.onConnected.bind(this);
@@ -28,9 +33,12 @@ class Invoice extends Component {
 
         this.socket = SocketIOClient(config._API);
         userService.getToken()
-            .then(token => {
-                this.socket.emit('join', { userToken: token, invoiceID: navState.params.token })
+            .then(userToken => {
+                console.log(this.state.invoiceID)
+                this.socket.emit('join', { userToken: userToken, invoiceID: '594ee5de15a7233aec88a17c' })
             });
+        this.socket.on("connect_error", (error) => console.log('ce', error));
+        this.socket.on("connect_failed", (error) => console.log('cf', error))
         this.socket.on('connected', this.onConnected)
         this.socket.on('contribution', this.onReceivedContribution);
         this.socket.on('complete', this.onComplete);
@@ -53,7 +61,7 @@ class Invoice extends Component {
         console.log('oncomplete');
     }
     onPayPress() {
-        console.log('pay');
+        console.log('pay', this.state.data.invoice._id);
         this.props.navigation.navigate('Pay', {
             invoiceID: this.state.data.invoice._id
         });

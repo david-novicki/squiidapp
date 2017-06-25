@@ -10,9 +10,9 @@ import QRReader from '../qr-reader/qr-reader';
 import Complete from '../complete/complete';
 
 const StackNav = StackNavigator({
-    Home: {
-        screen: Home,
-    },
+    // Home: {
+    //     screen: Home,
+    // },
     Invoice: {
         screen: Invoice
     },
@@ -29,7 +29,7 @@ const StackNav = StackNavigator({
         screen: Pay
     },
     Reader: {
-        screen: QRReader
+        screen: QRReader,
     }
 });
 export default StackNav;

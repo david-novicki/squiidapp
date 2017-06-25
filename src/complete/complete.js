@@ -8,10 +8,15 @@ import {
 } from 'react-native';
 import Hr from 'react-native-hr';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Iconn from 'react-native-vector-icons/MaterialIcons';
 import API from './api/payments';
+import BackButton from '../shared/back-button/back-button';
+import Iconn from 'react-native-vector-icons/MaterialIcons'
 
 class Complete extends Component {
+    static navigationOptions = ({navigation}) => ({
+        headerStyle:{ position: 'absolute', backgroundColor: 'transparent', zIndex: 100, top: 0, left: 0, right: 0 },
+        headerLeft: (<BackButton onPress={() => navigation.goBack()} />),
+    })
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +27,10 @@ class Complete extends Component {
     }
     async onCompletePress() {
         try {
-            await API.makePayment(this.state)
+            await API.makePayment(this.state);
+            this.props.navigation.navigate('Invoice', {
+                invoiceID: this.state.invoiceID
+            });
         } catch (error) {
             console.log('error');
         }

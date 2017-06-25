@@ -6,13 +6,19 @@ import {
     TouchableOpacity
 } from 'react-native';
 import NumberPad from './components/numberpad/numberpad';
+import BackButton from '../shared/back-button/back-button';
 
 class Pay extends Component {
+    static navigationOptions = ({navigation}) => ({
+        headerStyle:{ position: 'absolute', backgroundColor: 'transparent', zIndex: 100, top: 0, left: 0, right: 0 },
+        headerLeft: (<BackButton color='white' onPress={() => navigation.goBack()} />),
+    })
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             amount: '0',
-            invoiceID: props.navigation.params.invoiceID
+            invoiceID: props.navigation.state.params.invoiceID
         }
         this.onAdd = this.onAdd.bind(this);
         this.onCompletePress = this.onCompletePress.bind(this);

@@ -10,6 +10,9 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Hr from 'react-native-hr';
 
 class Home extends Component {
+    static navigationOptions = () => ({
+        header: null
+    })
     constructor(props) {
         super(props);
         this.state = {
@@ -65,6 +68,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#03A9F4',
+        paddingTop: 22
     },
     topbar: {
         flexDirection: 'row',
