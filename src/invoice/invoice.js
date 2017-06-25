@@ -6,7 +6,10 @@ import {
     TouchableOpacity
 } from 'react-native';
 import API from './api/data';
+import config from '../config';
+import SocketIOClient from 'socket.io-client';
 import FeedItem from './components/feed-item/feed-item';
+import userService from '../services/user';
 
 class Invoice extends Component {
     constructor(props) {
@@ -14,20 +17,50 @@ class Invoice extends Component {
         let navState = props.navigation.state;
         this.state = {
             token: '594ee5de15a7233aec88a17c',//navState.params.token || null,
-            data: null
+            data: {},
         }
+        this.onConnected = this.onConnected.bind(this);
+        this.onError = this.onError.bind(this);
         this.onPayPress = this.onPayPress.bind(this);
         this.onInfoPress = this.onInfoPress.bind(this);
+        this.onReceivedContribution = this.onReceivedContribution.bind(this);
+        this.onComplete = this.onComplete.bind(this);
+
+        this.socket = SocketIOClient(config._API);
+        userService.getToken()
+            .then(token => {
+                this.socket.emit('join', { userToken: token, invoiceID: this.state.token })
+            });
+        this.socket.on('connected', this.onConnected)
+        this.socket.on('contribution', this.onReceivedContribution);
+        this.socket.on('complete', this.onComplete);
+        this.socket.on('err', this.onError);
     }
-    async componentWillMount() {
-        try {
-            console.log('token', this.state.token);
-            let response = await API.getInvoice(this.state.token);//594ee5de15a7233aec88a17c
-            let resJson = await response.json();
-            console.log(resJson);
-        } catch (error) {
-            console.log(error);
-        }
+    // async componentWillMount() {
+    //     try {
+    //         let response = await API.getInvoice(this.state.token);//594ee5de15a7233aec88a17c
+    //         let resJson = await response.json();
+    //         //console.log('resjson', resJson);
+    //         this.setState({ data: resJson });
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
+    onConnected(data) {
+        console.log('connected', data);
+        this.setState({ data: data });
+        // console.log('contribute');
+        // this.socket.emit('contribute', 30);
+    }
+    onError(message) {
+        console.log('err', message);
+    }
+    onReceivedContribution(data) {
+        console.log('on contributions',contributions);
+        this.setState({data: {...this.state.data, contributions: data.contributions}});
+    }
+    onComplete() {
+        console.log('oncomplete');
     }
     onPayPress() {
         console.log('pay');
@@ -36,22 +69,31 @@ class Invoice extends Component {
     onInfoPress() {
         console.log('info');
     }
+    renderbody(data) {
+        return (
+            <View>
+                <Text>{data.invoice.total}</Text>
+                {this.renderContributions(data.contributions)}
+            </View>
+        )
+    }
     renderContributions(contributions) {
         if (contributions)
             return contributions.map(item => {
                 return (
-                    <FeedItem data={item} />
+                    <FeedItem
+                        key={Math.random() + 'contrib_'}
+                        data={item} />
                 )
             })
     }
     render() {
-        let invoice = (this.state.data ? this.state.data.invoice : {});
+        let data = this.state.data;
         return (
             <View style={styles.container}>
                 <View style={styles.body}>
-                    {/*<Text>Invoice Page {this.state.data ? this.state.data : null}</Text>*/}
-                    <Text>{invoice.total}</Text>
-                    {this.renderContributions(invoice.contributions)}
+                    {data && data.invoice ?
+                        this.renderbody(data) : null}
                 </View>
                 <View style={styles.bottomBar}>
                     <TouchableOpacity

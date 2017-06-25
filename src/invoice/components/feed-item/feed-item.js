@@ -8,7 +8,7 @@ import {
 
 const FeedItem = ({data}) => {
         return (
-            <View styles={styles.container}>
+            <View style={styles.container}>
                 <Image source={{uri: data.thumbnail}}/>
                 <Text>{data.amount}</Text>
             </View>

@@ -50,7 +50,7 @@ class Pay extends Component {
                     <TouchableOpacity
                         style={styles.button}
                         onPress={this.onCompletePress}>
-                        <Text style={styles.textB}>Pay</Text>
+                        <Text style={styles.textB}>Send</Text>
                     </TouchableOpacity>
                 </View>
             </View>

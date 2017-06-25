@@ -16,12 +16,12 @@ const StackNav = StackNavigator({
     Invoice: {
         screen: Invoice
     },
-    Profile: {
-        screen: Profile
-    },
-    Recent: {
-        screen: Recent
-    },
+    // Profile: {
+    //     screen: Profile
+    // },
+    // Recent: {
+    //     screen: Recent
+    // },
     Complete: {
         screen: Complete
     },
