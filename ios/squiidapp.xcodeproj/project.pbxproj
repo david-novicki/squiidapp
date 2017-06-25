@@ -46,6 +46,7 @@
 		98322A876C2F424A98254034 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27B10110EC0D4F9CB1B612BB /* Entypo.ttf */; };
 		9890792ED569418D9EBFF05F /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69B187BDAA934B96AA9D3211 /* SimpleLineIcons.ttf */; };
 		9BF9934E21684BC5AA805A2C /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 045773CFDCEB4B56A76818D9 /* Zocial.ttf */; };
+		B20A58DC1F00325D0020A5BE /* squiiid_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B20A58DB1F00325D0020A5BE /* squiiid_logo.png */; };
 		B7423C435EC645AE91900DA5 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7647DBB9A1544CB8F5C2AD6 /* libRCTCamera.a */; };
 		E7A0CE8E4AE44420AD099138 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29397319F7E34B66890579CE /* FontAwesome.ttf */; };
 /* End PBXBuildFile section */
@@ -306,6 +307,7 @@
 		8DEF773FD3E4458D98D45A11 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		A2AAA98B98E1498282755FDB /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		AD31574F103C481A91F2C9D0 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		B20A58DB1F00325D0020A5BE /* squiiid_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = squiiid_logo.png; sourceTree = "<group>"; };
 		E7647DBB9A1544CB8F5C2AD6 /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
 		E7957BAE73D6474AB884E344 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		E7ECDC63B314445A85F37BB1 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -547,6 +549,7 @@
 		8C84E7639FBB4023977A55C0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B20A58BD1F00324C0020A5BE /* Images */,
 				27B10110EC0D4F9CB1B612BB /* Entypo.ttf */,
 				AD31574F103C481A91F2C9D0 /* EvilIcons.ttf */,
 				29397319F7E34B66890579CE /* FontAwesome.ttf */,
@@ -559,6 +562,14 @@
 				045773CFDCEB4B56A76818D9 /* Zocial.ttf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		B20A58BD1F00324C0020A5BE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B20A58DB1F00325D0020A5BE /* squiiid_logo.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		B2AD1B171EFF2533003452B9 /* Products */ = {
@@ -983,6 +994,7 @@
 				43A96F31AA644BA2B50F9216 /* Foundation.ttf in Resources */,
 				712E585363F14A7190779E18 /* Ionicons.ttf in Resources */,
 				4694314884674689BF936C7A /* MaterialCommunityIcons.ttf in Resources */,
+				B20A58DC1F00325D0020A5BE /* squiiid_logo.png in Resources */,
 				7CF7DCD05FEB47288B76CA7A /* MaterialIcons.ttf in Resources */,
 				6DE68B5A75E54F48AA8758FF /* Octicons.ttf in Resources */,
 				9890792ED569418D9EBFF05F /* SimpleLineIcons.ttf in Resources */,

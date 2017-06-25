@@ -70,15 +70,17 @@ class Invoice extends Component {
     calculateLeft(amount, contributions) {
         let amountPaid = 0;
         contributions.forEach(item => {
-            amountPaid = + item.amount;
+            amountPaid += item.amount;
         })
         return amount - amountPaid;
     }
     amountPaid(contributions) {
         let amountPaid = 0;
+        console.log(contributions);
         contributions.forEach(item => {
-            amountPaid = + item.amount;
+            amountPaid += item.amount;
         })
+        console.log(amountPaid);
         return amountPaid;
     }
     renderbody(data) {

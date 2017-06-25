@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 
 const FeedItem = ({ data, invert }) => {
-    console.log(data.thumbnail);
     let side = (invert ? styles.right : styles.left);
     return (
         <View style={[styles.container, side]}>
@@ -20,7 +19,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
-        paddingTop: 22
+        paddingTop: 22,
     },
     right: {
         justifyContent: 'flex-end',
