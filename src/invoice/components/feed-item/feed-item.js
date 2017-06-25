@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     View,
     Text,
@@ -6,13 +6,14 @@ import {
     StyleSheet
 } from 'react-native';
 
-const FeedItem = ({data}) => {
-        return (
-            <View style={styles.container}>
-                <Image source={{uri: data.thumbnail}}/>
-                <Text>{data.amount}</Text>
-            </View>
-        )
+const FeedItem = ({ data }) => {
+    console.log(data);
+    return (
+        <View style={styles.container}>
+            <Image source={{ uri: data.thumbnail }} />
+            <Text>{data.amount}</Text>
+        </View>
+    )
 }
 const styles = StyleSheet.create({
     container: {

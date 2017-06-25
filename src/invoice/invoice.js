@@ -20,8 +20,9 @@ class Invoice extends Component {
     constructor(props) {
         super(props);
         let navState = props.navigation.state;
+        console.log(navState);
         this.state = {
-            invoiceID: '594ee5de15a7233aec88a17c',
+            invoiceID: '594ff50d1360df3af02dcd4b',//navState.params.invoiceID,
             data: {},
         }
         this.onConnected = this.onConnected.bind(this);
@@ -34,8 +35,7 @@ class Invoice extends Component {
         this.socket = SocketIOClient(config._API);
         userService.getToken()
             .then(userToken => {
-                console.log(this.state.invoiceID)
-                this.socket.emit('join', { userToken: userToken, invoiceID: '594ee5de15a7233aec88a17c' })
+                this.socket.emit('join', { userToken: userToken, invoiceID: '594ff50d1360df3af02dcd4b' })
             });
         this.socket.on("connect_error", (error) => console.log('ce', error));
         this.socket.on("connect_failed", (error) => console.log('cf', error))
@@ -47,8 +47,6 @@ class Invoice extends Component {
     onConnected(data) {
         console.log('connected', data);
         this.setState({ data: data });
-        // console.log('contribute');
-        // this.socket.emit('contribute', 30);
     }
     onError(message) {
         console.log('err', message);
@@ -70,7 +68,11 @@ class Invoice extends Component {
         console.log('info');
     }
     calculateLeft(amount, contributions) {
-
+        let amountLeft = 0;
+        contributions.forEach(item => {
+            amountLeft = + item.amount;
+        })
+        return amountLeft
     }
     renderbody(data) {
         return (
@@ -80,10 +82,10 @@ class Invoice extends Component {
                     <Text style={styles.text}>$</Text>
                     <Text style={styles.text}>{data.invoice.total}</Text>
                 </View>
-                {/*<View style={[styles.row, styles.padding]}>
+                <View style={[styles.row, styles.padding]}>
                     <Text style={styles.text}>$</Text>
                     <Text style={styles.text}>{this.calculateLeft(data.invoice.total, data.contributions)}</Text>
-                </View>*/}
+                </View>
                 {this.renderContributions(data.contributions)}
             </View>
         )
