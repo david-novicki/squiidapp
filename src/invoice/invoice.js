@@ -16,7 +16,7 @@ class Invoice extends Component {
         super(props);
         let navState = props.navigation.state;
         this.state = {
-            token: '594ee5de15a7233aec88a17c',//navState.params.token || null,
+            token: navState.params.token || null,//594ee5de15a7233aec88a17c
             data: {},
         }
         this.onConnected = this.onConnected.bind(this);
@@ -36,16 +36,6 @@ class Invoice extends Component {
         this.socket.on('complete', this.onComplete);
         this.socket.on('err', this.onError);
     }
-    // async componentWillMount() {
-    //     try {
-    //         let response = await API.getInvoice(this.state.token);//594ee5de15a7233aec88a17c
-    //         let resJson = await response.json();
-    //         //console.log('resjson', resJson);
-    //         this.setState({ data: resJson });
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
     onConnected(data) {
         console.log('connected', data);
         this.setState({ data: data });
@@ -56,8 +46,8 @@ class Invoice extends Component {
         console.log('err', message);
     }
     onReceivedContribution(data) {
-        console.log('on contributions',contributions);
-        this.setState({data: {...this.state.data, contributions: data.contributions}});
+        console.log('on contributions', data);
+        this.setState({ data: { ...this.state.data, contributions: data.contributions } });
     }
     onComplete() {
         console.log('oncomplete');
@@ -69,10 +59,21 @@ class Invoice extends Component {
     onInfoPress() {
         console.log('info');
     }
+    calculateLeft(amount, contributions) {
+
+    }
     renderbody(data) {
         return (
             <View>
-                <Text>{data.invoice.total}</Text>
+                {/*<Text>{data.invoice.total}</Text>*/}
+                <View style={[styles.row, styles.padding]}>
+                    <Text style={styles.text}>$</Text>
+                    <Text style={styles.text}>{data.invoice.total}</Text>
+                </View>
+                {/*<View style={[styles.row, styles.padding]}>
+                    <Text style={styles.text}>$</Text>
+                    <Text style={styles.text}>{this.calculateLeft(data.invoice.total, data.contributions)}</Text>
+                </View>*/}
                 {this.renderContributions(data.contributions)}
             </View>
         )
@@ -99,12 +100,12 @@ class Invoice extends Component {
                     <TouchableOpacity
                         style={styles.button}
                         onPress={this.onInfoPress}>
-                        <Text style={styles.text}>Info</Text>
+                        <Text style={styles.textB}>Info</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
                         onPress={this.onPayPress}>
-                        <Text style={styles.text}>Pay</Text>
+                        <Text style={styles.textB}>Pay</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -116,16 +117,30 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#03A9F4',
     },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    padding: {
+        paddingBottom: 40,
+        paddingTop: 30
+    },
     body: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'space-around',
         paddingBottom: 150
     },
-    text: {
+    textB: {
         fontSize: 20,
         paddingTop: 20,
         color: '#03A9F4'
+    },
+    text: {
+        textAlign: 'center',
+        fontSize: 90,
+        color: 'white',
+        paddingBottom: 10
     },
     button: {
         backgroundColor: 'white',

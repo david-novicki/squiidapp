@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Hr from 'react-native-hr';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Iconn from 'react-native-vector-icons/MaterialIcons';
 
 class Complete extends Component {
     constructor(props) {
@@ -25,15 +26,16 @@ class Complete extends Component {
                     </View>
                     <View style={styles.cc}>
                         <Image source={require('../public/images/visa.png')}/>
+                        <Text>  David's Visa </Text>
+                        <Iconn name='keyboard-arrow-down' color='gray' size={25} />
                     </View>
-                    {/*<Hr lineColor='#03A9F4' text='OR' textColor='#03A9F4' />*/}
+                    <Hr lineColor='#03A9F4' text='OR' textColor='black' />
                     <View style={styles.item}>
                         <Icon.Button name="apple" backgroundColor="black" borderRadius={10}>
                             <Text style={styles.payButton}>Apple Pay</Text>
                         </Icon.Button>
                     </View>
                 </View>
-
                 <View style={styles.bottomBar}>
                     <TouchableOpacity
                         style={styles.button}
@@ -61,6 +63,8 @@ const styles = StyleSheet.create({
         paddingBottom: 5
     },
     cc: {
+        flexDirection: 'row',
+        alignItems:'center',
         paddingTop: 40,
         paddingBottom: 40
     },

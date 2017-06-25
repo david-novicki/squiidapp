@@ -10,18 +10,18 @@ import QRReader from '../qr-reader/qr-reader';
 import Complete from '../complete/complete';
 
 const StackNav = StackNavigator({
-    // Home: {
-    //     screen: Home,
-    // },
+    Home: {
+        screen: Home,
+    },
     Invoice: {
         screen: Invoice
     },
-    // Profile: {
-    //     screen: Profile
-    // },
-    // Recent: {
-    //     screen: Recent
-    // },
+    Profile: {
+        screen: Profile
+    },
+    Recent: {
+        screen: Recent
+    },
     Complete: {
         screen: Complete
     },
