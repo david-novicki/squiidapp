@@ -3,6 +3,7 @@ const checkStatus = (response) => {
         return response;
     } else {
         let error = new Error(response.statusText);
+        console.log(error);
         error.response = response;
         throw error;
     }

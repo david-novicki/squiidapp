@@ -13,15 +13,15 @@ const StackNav = StackNavigator({
     // Home: {
     //     screen: Home,
     // },
-    // Invoice: {
-    //     screen: Invoice
-    // },
-    // Profile: {
-    //     screen: Profile
-    // },
-    // Recent: {
-    //     screen: Recent
-    // },
+    Invoice: {
+        screen: Invoice
+    },
+    Profile: {
+        screen: Profile
+    },
+    Recent: {
+        screen: Recent
+    },
     Complete: {
         screen: Complete
     },

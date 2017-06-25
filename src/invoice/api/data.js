@@ -1,9 +1,10 @@
 import fetch from '../../services/fetch';
 import config from '../../config';
 
-const getInvoice = (token) => (
-    fetch(`${config._API}/invoice/${token}`)
-)
+const getInvoice = (token) => {
+    console.log(`${config._API}/invoice/${token}`);
+    return fetch(`${config._API}/invoice/${token}`)
+}
 const makePayment = (amount) => (
     fetch(`${config._API}/contribution`, {
         method: 'post',

@@ -21,7 +21,10 @@ class Invoice extends Component {
     }
     async componentWillMount() {
         try {
-            let data = await API.getInvoice(this.state.token);//594ee5de15a7233aec88a17c
+            console.log('token', this.state.token);
+            let response = await API.getInvoice(this.state.token);//594ee5de15a7233aec88a17c
+            let resJson = await response.json();
+            console.log(resJson);
         } catch (error) {
             console.log(error);
         }
